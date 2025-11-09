@@ -12,4 +12,15 @@ CREATE TABLE `movies` (
   KEY `genre_id` (`genre_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+-- Create the table
+CREATE TABLE genres (
+  _id VARCHAR(255) NOT NULL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+-- Insert the given records
+INSERT INTO genres (_id, name) VALUES
+('5b21ca3eeb7f6fbccd471818', 'Action'),
+('5b21ca3eeb7f6fbccd471814', 'Comedy'),
+('5b21ca3eeb7f6fbccd471820', 'Thriller');
 
