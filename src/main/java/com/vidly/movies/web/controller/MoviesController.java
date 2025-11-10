@@ -45,7 +45,7 @@ public class MoviesController {
 		return savedMovie.getId();
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, path = "/movies/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.DELETE, path = "/movies/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
 	public String deletedMovie(@PathVariable String id) {
 		if(movieRepository.findById(id).orElse(null) == null) {
 			return "movie doesn't exist in DB";
