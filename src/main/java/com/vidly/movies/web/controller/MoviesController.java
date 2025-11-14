@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vidly.dao.entities.MovieDAO;
 import com.vidly.dao.repository.MovieRepository;
+import com.vidly.util.IdGenerator;
 
 @RestController
 public class MoviesController {
@@ -33,6 +34,7 @@ public class MoviesController {
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/movies" , produces = MediaType.APPLICATION_JSON_VALUE)
 	public String addMovie(@RequestBody MovieDAO movie ) {
+		movie.setId(IdGenerator.generate());
 		MovieDAO savedMovie = movieRepository.save(movie);
 		 String id = savedMovie.getId();
 		 return id;
