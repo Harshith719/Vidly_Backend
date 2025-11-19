@@ -15,7 +15,7 @@ public class GenreDAO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "_id", nullable = false)
-	private String id;
+	private String _id;
 	
 	@Column(name = "name", nullable = false)
 	private String name;

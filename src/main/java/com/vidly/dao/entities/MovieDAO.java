@@ -18,7 +18,7 @@ public class MovieDAO {
 
 	@Id
 	@Column(name = "_id", nullable = false)
-	private String id;
+	private String _id;
 
 	@Column(name = "title", nullable = false)
 	private String title;

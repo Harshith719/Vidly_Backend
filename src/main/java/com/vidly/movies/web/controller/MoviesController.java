@@ -11,48 +11,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vidly.dao.entities.MovieDAO;
-import com.vidly.dao.repository.MovieRepository;
+import com.vidly.domain.Movie;
+import com.vidly.service.MovieService;
 import com.vidly.util.IdGenerator;
 
 @RestController
 public class MoviesController {
 	
 	@Autowired
-	private MovieRepository movieRepository;
+	private MovieService movieService;
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/movies" , produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<MovieDAO> getMovies() {
-		List<MovieDAO> allMovies = movieRepository.findAll();
-		return allMovies;
+		return movieService.getMovies();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/movies/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
 	public MovieDAO getMovieById(@PathVariable String id) {
-		MovieDAO movie = movieRepository.findById(id).orElse(null);
+		MovieDAO movie = movieService.getMoviesById(id);
 		return movie;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/movies" , produces = MediaType.APPLICATION_JSON_VALUE)
-	public String addMovie(@RequestBody MovieDAO movie ) {
-		movie.setId(IdGenerator.generate());
-		MovieDAO savedMovie = movieRepository.save(movie);
-		 String id = savedMovie.getId();
-		 return id;
+	public MovieDAO addMovie(@RequestBody Movie movie ) {
+		MovieDAO savedMovie = movieService.addMovie(movie);
+		return savedMovie;
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "/movies/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-	public String updateMovie(@RequestBody MovieDAO movie, @PathVariable String id) {
-		movie.setId(id);
-		MovieDAO savedMovie = movieRepository.save(movie);
-		return savedMovie.getId();
+	public MovieDAO updateMovie(@RequestBody Movie movie, @PathVariable String id) {
+		MovieDAO updatedMovie = movieService.updateMovie(movie);
+		return updatedMovie;
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, path = "/movies/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
 	public String deletedMovie(@PathVariable String id) {
-		if(movieRepository.findById(id).orElse(null) == null) {
-			return "movie doesn't exist in DB";
-		}
-		movieRepository.deleteById(id);
-		return "movie deleted Successfully";
+		return movieService.deleteMovie(id);
 	}
 }
