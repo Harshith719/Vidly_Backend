@@ -1,0 +1,26 @@
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### Eclipse ###
+.project
+.classpath
+.settings/
+*.launch
+
+### Java ###
+*.class
+*.log
+
+### OS / General ###
+.DS_Store
+Thumbs.db
+
+### IntelliJ (optional but safe) ###
+.idea/
+*.iml
+out/
+
+### Eclipse annotation processing (safe to ignore) ###
+.apt_generated/
+factorypath
