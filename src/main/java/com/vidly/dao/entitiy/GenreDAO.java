@@ -1,4 +1,4 @@
-package com.vidly.dao.entities;
+package com.vidly.dao.entitiy;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

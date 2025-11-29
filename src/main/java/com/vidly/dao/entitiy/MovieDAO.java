@@ -1,4 +1,4 @@
-package com.vidly.dao.entities;
+package com.vidly.dao.entitiy;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
